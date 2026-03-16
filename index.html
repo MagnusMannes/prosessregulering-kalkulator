@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DiffCraft – Bygg differenslikninger visuelt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+
+    <main class="app-shell">
+      <header class="hero glass">
+        <p class="eyebrow">GitHub Pages-klar</p>
+        <h1>DiffCraft</h1>
+        <p>
+          Drag & drop blokker for å bygge differenslikninger, og generer blokkdiagram automatisk.
+          Alt i én moderne, lettbrukt side.
+        </p>
+      </header>
+
+      <section class="grid-layout">
+        <aside class="panel glass">
+          <h2>Blokkbibliotek</h2>
+          <p class="hint">Dra en blokk til arbeidsflaten for å legge til et ledd.</p>
+
+          <div id="palette" class="palette">
+            <button class="palette-item" draggable="true" data-type="input">Inngang u[k−d]</button>
+            <button class="palette-item" draggable="true" data-type="output">Utgang y[k−d]</button>
+            <button class="palette-item" draggable="true" data-type="constant">Konstant</button>
+          </div>
+
+          <hr />
+
+          <h3>Verktøy</h3>
+          <div class="tool-actions">
+            <button id="clearEquation" class="btn secondary">Nullstill ligning</button>
+            <button id="quickExample" class="btn secondary">Sett inn eksempel</button>
+            <button id="generateDiagram" class="btn primary">Generer blokkdiagram</button>
+          </div>
+        </aside>
+
+        <section class="panel glass equation-zone">
+          <div class="zone-header">
+            <h2>Differenslikning-builder</h2>
+            <span class="tag">Drag & drop</span>
+          </div>
+
+          <div id="dropZone" class="drop-zone">
+            <p>Slipp blokker her</p>
+          </div>
+
+          <div class="equation-output">
+            <label for="equationText">Ligning</label>
+            <textarea id="equationText" rows="3" readonly></textarea>
+          </div>
+        </section>
+
+        <section class="panel glass diagram-zone">
+          <div class="zone-header">
+            <h2>Blokkdiagram</h2>
+            <span class="tag">Auto fra ligning</span>
+          </div>
+          <svg id="diagramCanvas" viewBox="0 0 1000 520" aria-label="Blokkdiagram"></svg>
+          <p class="hint compact">Tips: Oppdater koeffisienter/forsinkelser i leddene over og trykk “Generer blokkdiagram”.</p>
+        </section>
+      </section>
+    </main>
+
+    <template id="termTemplate">
+      <article class="term-card" draggable="true">
+        <div class="term-top">
+          <span class="drag-handle" title="Dra for å omorganisere">⠿</span>
+          <strong class="term-title"></strong>
+          <button class="delete-term" title="Slett ledd">✕</button>
+        </div>
+        <div class="term-fields"></div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
