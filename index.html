@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DiffCraft – Enkel differenslikning og blokkdiagram</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+
+    <main class="app-shell">
+      <header class="hero glass">
+        <p class="eyebrow">Ny enkel flyt</p>
+        <h1>DiffCraft</h1>
+        <p>
+          Skriv inn koeffisienter direkte (a- og b-lister). Vi bygger ligning + blokkdiagram automatisk,
+          med stor tekst og tydelige blokker.
+        </p>
+      </header>
+
+      <section class="grid-layout">
+        <section class="panel glass input-zone">
+          <div class="zone-header">
+            <h2>1) Sett inn formel (enkelt)</h2>
+            <span class="tag">Ny editor</span>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              a-koeffisienter (for y[k-1], y[k-2], ...)
+              <input id="aCoeffs" type="text" value="-1.2, 0.32" />
+            </label>
+            <label>
+              b-koeffisienter (for u[k-1], u[k-2], ...)
+              <input id="bCoeffs" type="text" value="0.5, 0.2" />
+            </label>
+            <label>
+              Bias/konstant
+              <input id="bias" type="number" step="0.01" value="0.1" />
+            </label>
+          </div>
+
+          <div class="tool-actions row">
+            <button id="applyFormula" class="btn primary">Oppdater ligning og diagram</button>
+            <button id="exampleStable" class="btn secondary">Eksempel: stabil</button>
+            <button id="resetFormula" class="btn secondary">Nullstill</button>
+          </div>
+
+          <div class="equation-output">
+            <label>Ligning (LaTeX)</label>
+            <div id="equationLatex" class="equation-latex"></div>
+            <label for="equationText">Raw LaTeX</label>
+            <textarea id="equationText" rows="2" readonly></textarea>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel glass diagram-zone centered-diagram">
+        <div class="zone-header">
+          <h2>2) Blokkdiagram (midt på skjermen)</h2>
+          <span class="tag">Sentrert</span>
+        </div>
+        <div class="diagram-wrap">
+          <svg id="diagramCanvas" viewBox="0 0 1400 720" aria-label="Blokkdiagram"></svg>
+        </div>
+      </section>
+    </main>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="app.js"></script>
+  </body>
+</html>
